@@ -2,7 +2,7 @@ package org.example.view;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.Constant;
+import org.example.utilities.Constant;
 import org.example.controller.ControllerImplementation;
 
 import java.util.HashMap;

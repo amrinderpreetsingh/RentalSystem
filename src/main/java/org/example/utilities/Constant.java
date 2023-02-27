@@ -1,4 +1,4 @@
-package org.example;
+package org.example.utilities;
 
 public class Constant {
     public static final String StreetName = "streetName";
