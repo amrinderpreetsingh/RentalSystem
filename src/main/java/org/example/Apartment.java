@@ -6,6 +6,14 @@ public class Apartment extends Unit{
     private int squareFootage;
     private String unitNumber;
 
+    public Apartment(String streetName, String city, String postalCode, boolean isRented, String streetNumber, int unitId, int numberOfBedrooms, int numberOfBathrooms, int squareFootage, String unitNumber) {
+        super(streetName, city, postalCode, isRented, streetNumber, unitId);
+        this.numberOfBedrooms = numberOfBedrooms;
+        this.numberOfBathrooms = numberOfBathrooms;
+        this.squareFootage = squareFootage;
+        this.unitNumber = unitNumber;
+    }
+
     public int getNumberOfBedrooms() {
         return numberOfBedrooms;
     }
@@ -36,5 +44,17 @@ public class Apartment extends Unit{
 
     public void setUnitNumber(String unitNumber) {
         this.unitNumber = unitNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "apartment was called"+
+                "" +
+                "Apartment{" +
+                "numberOfBedrooms=" + numberOfBedrooms +
+                ", numberOfBathrooms=" + numberOfBathrooms +
+                ", squareFootage=" + squareFootage +
+                ", unitNumber='" + unitNumber + '\'' +
+                '}';
     }
 }

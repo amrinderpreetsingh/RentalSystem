@@ -8,6 +8,15 @@ public abstract class Unit {
     private String streetNumber;
     private int unitId;
 
+    public Unit(String streetName, String city, String postalCode, boolean isRented, String streetNumber, int unitId) {
+        this.streetName = streetName;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.isRented = isRented;
+        this.streetNumber = streetNumber;
+        this.unitId = unitId;
+    }
+
     public int getUnitId() {
         return unitId;
     }
