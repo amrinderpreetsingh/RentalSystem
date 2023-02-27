@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 public class RentalUnitFactory {
     public static Unit getRentalUnit(String unitType, String streetName, String city, String postalCode,

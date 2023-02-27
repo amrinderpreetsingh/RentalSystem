@@ -1,16 +1,16 @@
-package org.example;
+package org.example.view;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONValue;
+import org.example.controller.ControllerImplementation;
 
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Driver {
+public class View {
     Scanner scanner = new Scanner(System.in);
     private String option;
-    RentalServiceImpl service = new RentalServiceImpl();
+    ControllerImplementation service = new ControllerImplementation();
 
     public void menu() {
         System.out.println("Please select an option  :");
@@ -57,7 +57,7 @@ public class Driver {
     }
 
     public void addProperty(){
-        int propertyType = addPropertyMenu();
+        String propertyType = addPropertyMenu();
         System.out.println("Enter the property details :");
         System.out.print("Street Name :");
         String streetName= scanner.nextLine();
@@ -82,6 +82,7 @@ public class Driver {
         int unitNumber = Integer.parseInt(scanner.nextLine());
 
         HashMap<Object, Object> obj = new HashMap<>();
+        obj.put("unitType", propertyType);
         obj.put("streetName",streetName);
         obj.put("city", city);
         obj.put("postalCode", postalCode);
@@ -100,24 +101,23 @@ public class Driver {
             String json = objectMapper.writeValueAsString(obj);
             System.out.println(json);
             service.addProperty(json);
-
-//            String jsonInString = objectMapper.writeValueAsString(obj);
-//            System.out.println(jsonInString);
-//
-//            //Convert object to JSON string and pretty print
-//            jsonInString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
-//            System.out.println(jsonInString);
-//
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
-    public int addPropertyMenu(){
+    public String addPropertyMenu(){
         System.out.print("Please select a property type :" +
                 "1. Apartment " +
                 "2. Condo " +
                 "3. House " +
                 "Enter your option : ");
-        return Integer.parseInt(scanner.nextLine());
+
+        int selection = Integer.parseInt(scanner.nextLine());
+        switch (selection) {
+            case 1 -> {return "apartment";}
+            case 2 -> {return "condo";}
+            case 3 ->{return "house";}
+        }
+        return null;
     }
 }

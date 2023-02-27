@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 public class Apartment extends Unit{
     private int numberOfBedrooms;

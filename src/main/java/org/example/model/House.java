@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 public class House extends Unit{
     public House(String streetName, String city, String postalCode, boolean isRented, String streetNumber, int unitId) {

@@ -1,13 +1,13 @@
 package org.example;
 
-import java.util.ArrayList;
+import org.example.view.View;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Rental Management System : ");
 
-        Driver driver = new Driver();
-        driver.menu();
+        View view = new View();
+        view.menu();
 
 //        Unit apartment = RentalUnitFactory.getRentalUnit("apartment", "sherbrooke","Montreal",
 //                "h4b 1P5", false,"22", 6841,2,2,

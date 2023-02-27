@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 public abstract class Unit {
     private String streetName;

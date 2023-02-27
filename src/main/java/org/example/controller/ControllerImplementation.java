@@ -1,15 +1,15 @@
-package org.example;
+package org.example.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.example.model.RentalUnitFactory;
+import org.example.model.Unit;
 
 import java.util.ArrayList;
 
-public class RentalServiceImpl implements RentalService {
+public class ControllerImplementation implements Controller {
     ObjectMapper objectMapper = new ObjectMapper();
     ArrayList<Unit> rentalUnits = new ArrayList<>();
     Unit unit ;
