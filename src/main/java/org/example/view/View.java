@@ -2,6 +2,7 @@ package org.example.view;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.Constant;
 import org.example.controller.ControllerImplementation;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 public class View {
     Scanner scanner = new Scanner(System.in);
     private String option;
-    ControllerImplementation service = new ControllerImplementation();
+    ControllerImplementation controllerImplementation = new ControllerImplementation();
 
     public void menu() {
         System.out.println("Please select an option  :");
@@ -82,25 +83,24 @@ public class View {
         int unitNumber = Integer.parseInt(scanner.nextLine());
 
         HashMap<Object, Object> obj = new HashMap<>();
-        obj.put("unitType", propertyType);
-        obj.put("streetName",streetName);
-        obj.put("city", city);
-        obj.put("postalCode", postalCode);
-        obj.put("isRented",isRented);
-        obj.put("streetNumber", streetNumber);
-        obj.put("unitId",unitId);
-        obj.put("numberOfBedrooms", numberOfBedrooms);
-        obj.put("numberOfBathrooms",numberOfBathrooms);
-        obj.put("squareFootage",squareFootage);
-        obj.put("unitNumber", unitNumber);
+        obj.put(Constant.UnitType, propertyType);
+        obj.put(Constant.StreetName,streetName);
+        obj.put(Constant.City, city);
+        obj.put(Constant.PostalCode, postalCode);
+        obj.put(Constant.IsRented,isRented);
+        obj.put(Constant.StreetNumber, streetNumber);
+        obj.put(Constant.UnitId,unitId);
+        obj.put(Constant.NumberOfBedrooms, numberOfBedrooms);
+        obj.put(Constant.NumberOfBathrooms,numberOfBathrooms);
+        obj.put(Constant.SquareFootage,squareFootage);
+        obj.put(Constant.UnitNumber, unitNumber);
 
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
             String json = objectMapper.writeValueAsString(obj);
-            System.out.println(json);
-            service.addProperty(json);
+            controllerImplementation.addProperty(json);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -114,9 +114,9 @@ public class View {
 
         int selection = Integer.parseInt(scanner.nextLine());
         switch (selection) {
-            case 1 -> {return "apartment";}
-            case 2 -> {return "condo";}
-            case 3 ->{return "house";}
+            case 1 -> {return Constant.Apartment;}
+            case 2 -> {return Constant.Condo;}
+            case 3 ->{return Constant.House;}
         }
         return null;
     }

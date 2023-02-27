@@ -1,9 +1,9 @@
 package org.example.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.Constant;
 import org.example.model.RentalUnitFactory;
 import org.example.model.Unit;
 
@@ -20,29 +20,23 @@ public class ControllerImplementation implements Controller {
         try {
             JsonNode jsonNode = objectMapper.readTree(data);
             unit = RentalUnitFactory.getRentalUnit("apartment",
-                    jsonNode.get("streetName").asText(),
-                    jsonNode.get("city").asText(),
-                    jsonNode.get("postalCode").asText(),
-                    jsonNode.get("isRented").asBoolean(),
-                    jsonNode.get("streetNumber").asText(),
-                    jsonNode.get("unitId").asInt(),
-                    jsonNode.get("numberOfBedrooms").asInt(),
-                    jsonNode.get("numberOfBathrooms").asInt(),
-                    jsonNode.get("squareFootage").asInt(),
-                    jsonNode.get("unitNumber").asText());
-            System.out.println(unit);
+                    jsonNode.get(Constant.StreetName).asText(),
+                    jsonNode.get(Constant.City).asText(),
+                    jsonNode.get(Constant.PostalCode).asText(),
+                    jsonNode.get(Constant.IsRented).asBoolean(),
+                    jsonNode.get(Constant.StreetNumber).asText(),
+                    jsonNode.get(Constant.UnitId).asInt(),
+                    jsonNode.get(Constant.NumberOfBedrooms).asInt(),
+                    jsonNode.get(Constant.NumberOfBathrooms).asInt(),
+                    jsonNode.get(Constant.SquareFootage).asInt(),
+                    jsonNode.get(Constant.UnitNumber).asText());
             rentalUnits.add(unit);
 
             for (Unit unit : rentalUnits) {
                 System.out.println(unit);
             }
-        } catch (JsonMappingException ex) {
-            throw new RuntimeException(ex);
         } catch (JsonProcessingException ex) {
             throw new RuntimeException(ex);
-        }
-        catch (Exception e){
-            e.getMessage();
         }
     }
 }
