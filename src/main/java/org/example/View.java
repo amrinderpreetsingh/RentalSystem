@@ -4,7 +4,7 @@ public class View {
     public void showMenu(){
         System.out.println("Menu");
         System.out.println("1:Add property");
-
+        addProperty();
     }
     public void addProperty(){
         System.out.println("1:House");
