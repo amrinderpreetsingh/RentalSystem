@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class View {
     Scanner scanner = new Scanner(System.in);
-    private String option;
+    ObjectMapper objectMapper = new ObjectMapper();
     ControllerImplementation controllerImplementation = new ControllerImplementation();
 
     public void menu() {
@@ -25,10 +25,11 @@ public class View {
                             "6. Display rented units\n" +
                             "7. Display vacant units\n" +
                             "8. Display all leases\n" +
-                            "9. Exit");
+                            "9. Exit\n" +
+                            "Enter your choice :");
 
             try {
-                option = scanner.nextLine();
+                String option = scanner.nextLine();
 
                 switch (Integer.parseInt(option)) {
                     case 1 -> {
@@ -58,45 +59,31 @@ public class View {
     }
 
     public void addProperty(){
-        String propertyType = addPropertyMenu();
+        HashMap<Object, Object> obj = new HashMap<>();
+        obj.put(Constant.UnitType, addPropertyMenu());
         System.out.println("Enter the property details :");
         System.out.print("Street Name :");
-        String streetName= scanner.nextLine();
+        obj.put(Constant.StreetName,scanner.nextLine());
         System.out.print("City :");
-        String city= scanner.nextLine();
+        obj.put(Constant.City, scanner.nextLine());
         System.out.print("Postal Code :");
-        String postalCode = scanner.nextLine();
+        obj.put(Constant.PostalCode, scanner.nextLine());
         System.out.print("Is the unit already rented?  (Y/N) :" );
         String isRentedInput = scanner.nextLine();
         boolean isRented = isRentedInput.equalsIgnoreCase("Y");
+        obj.put(Constant.IsRented, isRented);
         System.out.print("Street Number :");
-        String streetNumber = scanner.nextLine();
+        obj.put(Constant.StreetNumber, scanner.nextLine());
         System.out.print("Unit Id : ");
-        int unitId = Integer.parseInt(scanner.nextLine());
-        System.out.println("Number of Bedrooms: ");
-        int numberOfBedrooms = Integer.parseInt(scanner.nextLine());
-        System.out.println("Number of Bathrooms :");
-        int numberOfBathrooms = Integer.parseInt(scanner.nextLine());
-        System.out.println("Square Footage :");
-        int squareFootage = Integer.parseInt(scanner.nextLine());
-        System.out.println("Unit Number :");
-        int unitNumber = Integer.parseInt(scanner.nextLine());
-
-        HashMap<Object, Object> obj = new HashMap<>();
-        obj.put(Constant.UnitType, propertyType);
-        obj.put(Constant.StreetName,streetName);
-        obj.put(Constant.City, city);
-        obj.put(Constant.PostalCode, postalCode);
-        obj.put(Constant.IsRented,isRented);
-        obj.put(Constant.StreetNumber, streetNumber);
-        obj.put(Constant.UnitId,unitId);
-        obj.put(Constant.NumberOfBedrooms, numberOfBedrooms);
-        obj.put(Constant.NumberOfBathrooms,numberOfBathrooms);
-        obj.put(Constant.SquareFootage,squareFootage);
-        obj.put(Constant.UnitNumber, unitNumber);
-
-
-        ObjectMapper objectMapper = new ObjectMapper();
+        obj.put(Constant.UnitId, scanner.nextLine());
+        System.out.print("Number of Bedrooms: ");
+        obj.put(Constant.NumberOfBedrooms, scanner.nextLine());
+        System.out.print("Number of Bathrooms :");
+        obj.put(Constant.NumberOfBathrooms, scanner.nextLine());
+        System.out.print("Square Footage :");
+        obj.put(Constant.SquareFootage, scanner.nextLine());
+        System.out.print("Unit Number :");
+        obj.put(Constant.UnitNumber, scanner.nextLine());
 
         try {
             String json = objectMapper.writeValueAsString(obj);
@@ -106,10 +93,10 @@ public class View {
         }
     }
     public String addPropertyMenu(){
-        System.out.print("Please select a property type :" +
-                "1. Apartment " +
-                "2. Condo " +
-                "3. House " +
+        System.out.print("Please select a property type :\n" +
+                "1. Apartment \n" +
+                "2. Condo \n" +
+                "3. House \n" +
                 "Enter your option : ");
 
         int selection = Integer.parseInt(scanner.nextLine());
