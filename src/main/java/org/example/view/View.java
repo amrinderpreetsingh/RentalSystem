@@ -1,6 +1,5 @@
 package org.example.view;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.*;
 import org.example.utilities.Constant;
 import org.example.controller.RentalController;
@@ -12,10 +11,8 @@ public class View {
     RentalController rentalController = new RentalController();
 
     public void menu() {
-        System.out.println("Welcome to Rental Management System : ");
-
         while (true) {
-            System.out.println("Please select an option  :");
+            System.out.println("Please select an option: ");
             System.out.print(
                     "1. Add a property\n" +
                             "2. Add a tenant\n" +
@@ -26,7 +23,7 @@ public class View {
                             "7. Display vacant units\n" +
                             "8. Display all leases\n" +
                             "9. Exit \n" +
-                            "Enter your option :");
+                            "Enter your option: ");
 
             try {
                 int choice = Integer.parseInt(scanner.nextLine().trim());
@@ -58,29 +55,27 @@ public class View {
     public void addProperty() {
         String propertyType = addPropertyMenu();
         UnitBuilder builder = null;
-        System.out.println("Enter the property details :");
-        System.out.print("Street Name :");
+        System.out.println("Enter the property details");
+        System.out.print("Street Name: ");
         String streetName = scanner.nextLine();
-        System.out.print("Street Number :");
+        System.out.print("Street Number: ");
         String streetNumber = scanner.nextLine();
-        System.out.print("City :");
+        System.out.print("City: ");
         String city = scanner.nextLine();
-        System.out.print("Postal Code :");
+        System.out.print("Postal Code: ");
         String postalCode = scanner.nextLine();
-        System.out.print("Is the unit already rented?  (Y/N) :");
-        String isRentedInput = scanner.nextLine();
         System.out.print("Monthly Rent: ");
-        Double monthlyRent = Double.parseDouble(scanner.nextLine().trim());
-        boolean isRented = isRentedInput.equalsIgnoreCase("Y");
+        double monthlyRent = Double.parseDouble(scanner.nextLine().trim());
+        boolean isRented = false;
         if (propertyType.equalsIgnoreCase(Constant.APARTMENT) || propertyType.equalsIgnoreCase(Constant.CONDO)) {
             System.out.print("Number of Bedrooms: ");
             int numberOfBedrooms = Integer.parseInt(scanner.nextLine().trim());
-            System.out.print("Number of Bathrooms :");
+            System.out.print("Number of Bathrooms: ");
             int numberOfBathrooms = Integer.parseInt(scanner.nextLine().trim());
 
-            System.out.print("Square Footage :");
+            System.out.print("Square Footage: ");
             int squareFootage = Integer.parseInt(scanner.nextLine().trim());
-            System.out.print("Unit Number :");
+            System.out.print("Unit Number: ");
             String unitNumber = scanner.nextLine().trim();
             if (propertyType.equalsIgnoreCase(Constant.APARTMENT)) {
                 builder = new ApartmentBuilder(streetName, city, postalCode, isRented, streetNumber, monthlyRent, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
@@ -99,7 +94,7 @@ public class View {
                 "1. Apartment \n" +
                 "2. Condo \n" +
                 "3. House \n" +
-                "Enter your option : ");
+                "Enter your option: ");
 
         int selection = Integer.parseInt(scanner.nextLine());
         switch (selection) {
@@ -116,17 +111,13 @@ public class View {
         return null;
     }
 
-    public void addTenant() {
-//        private String fullName;
-//        private String phoneNumber;
-//        private String email;
-//        private int monthlyRent;
+    public void addTenant(){
         TenantBuilder tenantBuilder = null;
-        System.out.print("Full Name :");
+        System.out.print("Full Name: ");
         String fullName = scanner.nextLine();
-        System.out.print("Phone Number :");
+        System.out.print("Phone Number: ");
         String phoneNumber = scanner.nextLine();
-        System.out.print("email :");
+        System.out.print("email: ");
         String email = scanner.nextLine();
         tenantBuilder = new TenantBuilder(fullName, phoneNumber, email);
 
