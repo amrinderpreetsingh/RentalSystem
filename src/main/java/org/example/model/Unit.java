@@ -10,14 +10,6 @@ public abstract class Unit {
     private int unitId;
     private static int _unitId=101;
 
-    public Unit(String streetName, String city, String postalCode, boolean isRented, String streetNumber, int unitId) {
-        this.streetName = streetName;
-        this.city = city;
-        this.postalCode = postalCode;
-        this.isRented = isRented;
-        this.streetNumber = streetNumber;
-        this.unitId = unitId;
-    }
 
     public Unit(UnitBuilder unitBuilder){
         this.streetName = unitBuilder.getStreetName();
