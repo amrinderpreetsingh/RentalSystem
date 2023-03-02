@@ -1,26 +1,24 @@
 package org.example.model;
 
-public class Apartment extends Unit{
+public class ApartmentBuilder extends UnitBuilder{
     private int numberOfBedrooms;
     private int numberOfBathrooms;
     private int squareFootage;
     private String unitNumber;
 
-    public Apartment(String streetName, String city, String postalCode, boolean isRented, String streetNumber, int unitId, int numberOfBedrooms, int numberOfBathrooms, int squareFootage, String unitNumber) {
-        super(streetName, city, postalCode, isRented, streetNumber, unitId);
+    public ApartmentBuilder(String streetName, String city, String postalCode, boolean isRented, String streetNumber, int numberOfBedrooms, int numberOfBathrooms, int squareFootage, String unitNumber) {
+        super(streetName, city, postalCode, isRented, streetNumber);
         this.numberOfBedrooms = numberOfBedrooms;
         this.numberOfBathrooms = numberOfBathrooms;
         this.squareFootage = squareFootage;
         this.unitNumber = unitNumber;
     }
-    public Apartment(ApartmentBuilder apartmentBuilder){
-        super(apartmentBuilder);
-        this.numberOfBedrooms = apartmentBuilder.getNumberOfBedrooms();
-        this.numberOfBathrooms = apartmentBuilder.getNumberOfBathrooms();
-        this.squareFootage = apartmentBuilder.getSquareFootage();
-        this.unitNumber = apartmentBuilder.getUnitNumber();
 
+    @Override
+    public Unit build() {
+        return new Apartment(this);
     }
+
     public int getNumberOfBedrooms() {
         return numberOfBedrooms;
     }
@@ -51,17 +49,5 @@ public class Apartment extends Unit{
 
     public void setUnitNumber(String unitNumber) {
         this.unitNumber = unitNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "apartment was called"+
-                "" +
-                "Apartment{" +
-                "numberOfBedrooms=" + numberOfBedrooms +
-                ", numberOfBathrooms=" + numberOfBathrooms +
-                ", squareFootage=" + squareFootage +
-                ", unitNumber='" + unitNumber + '\'' +
-                '}';
     }
 }

@@ -13,8 +13,8 @@ public class Constant {
     public static final String UnitNumber = "unitNumber";
     public static final String UnitType = "unitType";
 
-    public static final String Apartment = "apartment";
-    public static final String Condo = "condo";
-    public static final String House = "house";
+    public static final String Apartment = "Apartment";
+    public static final String Condo = "Condo";
+    public static final String House = "House";
 
 }

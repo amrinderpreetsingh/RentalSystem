@@ -3,8 +3,8 @@ package org.example.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.model.UnitBuilder;
 import org.example.utilities.Constant;
-import org.example.model.RentalUnitFactory;
 import org.example.model.Unit;
 
 import java.util.ArrayList;
@@ -38,5 +38,11 @@ public class ControllerImplementation implements Controller {
         } catch (JsonProcessingException ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    @Override
+    public void addddProperty(UnitBuilder unitBuilder) {
+        Unit u=unitBuilder.build();
+        System.out.println(u.getClass().toString());
     }
 }

@@ -2,6 +2,8 @@ package org.example.view;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.model.ApartmentBuilder;
+import org.example.model.UnitBuilder;
 import org.example.utilities.Constant;
 import org.example.controller.ControllerImplementation;
 
@@ -11,6 +13,7 @@ import java.util.Scanner;
 public class View {
     Scanner scanner = new Scanner(System.in);
     ObjectMapper objectMapper = new ObjectMapper();
+    int choice;
     ControllerImplementation controllerImplementation = new ControllerImplementation();
 
     public void menu() {
@@ -25,13 +28,12 @@ public class View {
                             "6. Display rented units\n" +
                             "7. Display vacant units\n" +
                             "8. Display all leases\n" +
-                            "9. Exit\n" +
-                            "Enter your choice :");
+                            "9. Exit");
 
             try {
-                String option = scanner.nextLine();
+                choice =Integer.parseInt(scanner.nextLine().trim());
 
-                switch (Integer.parseInt(option)) {
+                switch (choice) {
                     case 1 -> {
                         addProperty();
                     }
@@ -59,38 +61,36 @@ public class View {
     }
 
     public void addProperty(){
-        HashMap<Object, Object> obj = new HashMap<>();
-        obj.put(Constant.UnitType, addPropertyMenu());
+        String propertyType = addPropertyMenu();
+        UnitBuilder builder=null;
         System.out.println("Enter the property details :");
         System.out.print("Street Name :");
-        obj.put(Constant.StreetName,scanner.nextLine());
+        String streetName= scanner.nextLine();
+        System.out.print("Street Number :");
+        String streetNumber = scanner.nextLine();
         System.out.print("City :");
-        obj.put(Constant.City, scanner.nextLine());
+        String city= scanner.nextLine();
         System.out.print("Postal Code :");
-        obj.put(Constant.PostalCode, scanner.nextLine());
+        String postalCode = scanner.nextLine();
         System.out.print("Is the unit already rented?  (Y/N) :" );
         String isRentedInput = scanner.nextLine();
         boolean isRented = isRentedInput.equalsIgnoreCase("Y");
-        obj.put(Constant.IsRented, isRented);
-        System.out.print("Street Number :");
-        obj.put(Constant.StreetNumber, scanner.nextLine());
-        System.out.print("Unit Id : ");
-        obj.put(Constant.UnitId, scanner.nextLine());
-        System.out.print("Number of Bedrooms: ");
-        obj.put(Constant.NumberOfBedrooms, scanner.nextLine());
-        System.out.print("Number of Bathrooms :");
-        obj.put(Constant.NumberOfBathrooms, scanner.nextLine());
-        System.out.print("Square Footage :");
-        obj.put(Constant.SquareFootage, scanner.nextLine());
-        System.out.print("Unit Number :");
-        obj.put(Constant.UnitNumber, scanner.nextLine());
+        if(propertyType.equalsIgnoreCase("Apartment")){
+            System.out.print("Number of Bedrooms: ");
+            int numberOfBedrooms=Integer.parseInt( scanner.nextLine().trim());
+            System.out.print("Number of Bathrooms :");
+            int numberOfBathrooms=Integer.parseInt( scanner.nextLine().trim());
 
-        try {
-            String json = objectMapper.writeValueAsString(obj);
-            controllerImplementation.addProperty(json);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            System.out.print("Square Footage :");
+            int squareFootage=Integer.parseInt(scanner.nextLine().trim());
+            System.out.print("Unit Number :");
+            String unitNumber=scanner.nextLine().trim();
+            builder=new ApartmentBuilder(streetName,city,postalCode,isRented,streetNumber,numberOfBedrooms,numberOfBathrooms,squareFootage,unitNumber);
+        }else {
+
         }
+
+        controllerImplementation.addddProperty(builder);
     }
     public String addPropertyMenu(){
         System.out.print("Please select a property type :\n" +
