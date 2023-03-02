@@ -12,7 +12,7 @@ public class Service {
         Unit unit = builder.build();
         properties.add(unit);
         for (Unit property : properties) {
-            System.out.println(property.getClass());
+            System.out.println(property.toString());
         }
     }
 

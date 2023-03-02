@@ -74,4 +74,7 @@ public abstract class Unit {
     public void setStreetNumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
+
+    @Override
+    public abstract String toString();
 }
