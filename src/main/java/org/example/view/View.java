@@ -1,24 +1,21 @@
 package org.example.view;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.model.ApartmentBuilder;
-import org.example.model.UnitBuilder;
+import org.example.model.*;
 import org.example.utilities.Constant;
-import org.example.controller.ControllerImplementation;
+import org.example.controller.RentalController;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class View {
-    Scanner scanner = new Scanner(System.in);
-    ObjectMapper objectMapper = new ObjectMapper();
-    int choice;
-    ControllerImplementation controllerImplementation = new ControllerImplementation();
+     Scanner scanner = new Scanner(System.in);
+     RentalController rentalController = new RentalController();
 
-    public void menu() {
-        System.out.println("Please select an option  :");
+    public  void menu() {
+        System.out.println("Welcome to Rental Management System : ");
+
         while (true) {
+            System.out.println("Please select an option  :");
             System.out.print(
                     "1. Add a property\n" +
                             "2. Add a tenant\n" +
@@ -28,17 +25,15 @@ public class View {
                             "6. Display rented units\n" +
                             "7. Display vacant units\n" +
                             "8. Display all leases\n" +
-                            "9. Exit");
+                            "9. Exit \n" +
+                            "Enter your option :");
 
             try {
-                choice =Integer.parseInt(scanner.nextLine().trim());
+                int choice = Integer.parseInt(scanner.nextLine().trim());
 
                 switch (choice) {
-                    case 1 -> {
-                        addProperty();
-                    }
-//                    case 2 -> {
-//                    }
+                    case 1 -> addProperty();
+                    case 2 -> addTenant();
 //                    case 3 -> {
 //                    }
 //                    case 4 -> {
@@ -60,40 +55,45 @@ public class View {
         }
     }
 
-    public void addProperty(){
+    public void addProperty() {
         String propertyType = addPropertyMenu();
-        UnitBuilder builder=null;
+        UnitBuilder builder = null;
         System.out.println("Enter the property details :");
         System.out.print("Street Name :");
-        String streetName= scanner.nextLine();
+        String streetName = scanner.nextLine();
         System.out.print("Street Number :");
         String streetNumber = scanner.nextLine();
         System.out.print("City :");
-        String city= scanner.nextLine();
+        String city = scanner.nextLine();
         System.out.print("Postal Code :");
         String postalCode = scanner.nextLine();
-        System.out.print("Is the unit already rented?  (Y/N) :" );
+        System.out.print("Is the unit already rented?  (Y/N) :");
         String isRentedInput = scanner.nextLine();
         boolean isRented = isRentedInput.equalsIgnoreCase("Y");
-        if(propertyType.equalsIgnoreCase("Apartment")){
+        if (propertyType.equalsIgnoreCase(Constant.APARTMENT) || propertyType.equalsIgnoreCase(Constant.CONDO)) {
             System.out.print("Number of Bedrooms: ");
-            int numberOfBedrooms=Integer.parseInt( scanner.nextLine().trim());
+            int numberOfBedrooms = Integer.parseInt(scanner.nextLine().trim());
             System.out.print("Number of Bathrooms :");
-            int numberOfBathrooms=Integer.parseInt( scanner.nextLine().trim());
+            int numberOfBathrooms = Integer.parseInt(scanner.nextLine().trim());
 
             System.out.print("Square Footage :");
-            int squareFootage=Integer.parseInt(scanner.nextLine().trim());
+            int squareFootage = Integer.parseInt(scanner.nextLine().trim());
             System.out.print("Unit Number :");
-            String unitNumber=scanner.nextLine().trim();
-            builder=new ApartmentBuilder(streetName,city,postalCode,isRented,streetNumber,numberOfBedrooms,numberOfBathrooms,squareFootage,unitNumber);
-        }else {
-
+            String unitNumber = scanner.nextLine().trim();
+            if (propertyType.equalsIgnoreCase(Constant.APARTMENT)) {
+                builder = new ApartmentBuilder(streetName, city, postalCode, isRented, streetNumber, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
+            } else {
+                builder = new CondoBuilder(streetName, city, postalCode, isRented, streetNumber, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
+            }
+        } else {
+            builder = new HouseBuilder(streetName, city, postalCode, isRented, streetNumber);
         }
 
-        controllerImplementation.addddProperty(builder);
+        rentalController.addProperty(builder);
     }
-    public String addPropertyMenu(){
-        System.out.print("Please select a property type :\n" +
+
+    public String addPropertyMenu() {
+        System.out.print("Please select a property type >>\n" +
                 "1. Apartment \n" +
                 "2. Condo \n" +
                 "3. House \n" +
@@ -101,10 +101,34 @@ public class View {
 
         int selection = Integer.parseInt(scanner.nextLine());
         switch (selection) {
-            case 1 -> {return Constant.Apartment;}
-            case 2 -> {return Constant.Condo;}
-            case 3 ->{return Constant.House;}
+            case 1 -> {
+                return Constant.APARTMENT;
+            }
+            case 2 -> {
+                return Constant.CONDO;
+            }
+            case 3 -> {
+                return Constant.HOUSE;
+            }
         }
         return null;
     }
+
+    public void addTenant(){
+//        private String fullName;
+//        private String phoneNumber;
+//        private String email;
+//        private int monthlyRent;
+        TenantBuilder tenantBuilder = null;
+        System.out.print("Full Name :");
+        String fullName = scanner.nextLine();
+        System.out.print("Phone Number :");
+        String phoneNumber = scanner.nextLine();
+        System.out.print("email :");
+        String email = scanner.nextLine();
+        tenantBuilder = new TenantBuilder(fullName,phoneNumber,email);
+
+        rentalController.addTenant(tenantBuilder);
+    }
+
 }

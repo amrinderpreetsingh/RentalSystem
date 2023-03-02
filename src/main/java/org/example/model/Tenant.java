@@ -8,6 +8,12 @@ public class Tenant {
     private int monthlyRent;
     private boolean isRentPaid;
 
+    public Tenant(TenantBuilder tenantBuilder){
+        this.fullName=tenantBuilder.getFullName();
+        this.phoneNumber = tenantBuilder.getPhoneNumber();
+        this.email = tenantBuilder.getEmail();
+    }
+
     public String getFullName() {
         return fullName;
     }
