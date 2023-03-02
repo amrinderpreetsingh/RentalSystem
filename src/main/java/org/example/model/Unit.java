@@ -6,19 +6,28 @@ public abstract class Unit {
     private String postalCode;
     private boolean isRented;
     private String streetNumber;
-
+    private double monthlyRent;
     private int unitId;
-    private static int _unitId=101;
+    private static int _unitId = 101;
 
 
-    public Unit(UnitBuilder unitBuilder){
+    public Unit(UnitBuilder unitBuilder) {
         this.streetName = unitBuilder.getStreetName();
         this.city = unitBuilder.getCity();
         this.postalCode = unitBuilder.getPostalCode();
         this.isRented = unitBuilder.isRented();
         this.streetNumber = unitBuilder.getStreetNumber();
-        this.unitId=_unitId;
+        this.monthlyRent = unitBuilder.getMonthlyRent();
+        this.unitId = _unitId;
         _unitId++;
+    }
+
+    public double getMonthlyRent() {
+        return monthlyRent;
+    }
+
+    public void setMonthlyRent(double monthlyRent) {
+        this.monthlyRent = monthlyRent;
     }
 
     public int getUnitId() {

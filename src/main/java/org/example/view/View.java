@@ -8,10 +8,10 @@ import org.example.controller.RentalController;
 import java.util.Scanner;
 
 public class View {
-     Scanner scanner = new Scanner(System.in);
-     RentalController rentalController = new RentalController();
+    Scanner scanner = new Scanner(System.in);
+    RentalController rentalController = new RentalController();
 
-    public  void menu() {
+    public void menu() {
         System.out.println("Welcome to Rental Management System : ");
 
         while (true) {
@@ -69,6 +69,8 @@ public class View {
         String postalCode = scanner.nextLine();
         System.out.print("Is the unit already rented?  (Y/N) :");
         String isRentedInput = scanner.nextLine();
+        System.out.print("Monthly Rent: ");
+        Double monthlyRent = Double.parseDouble(scanner.nextLine().trim());
         boolean isRented = isRentedInput.equalsIgnoreCase("Y");
         if (propertyType.equalsIgnoreCase(Constant.APARTMENT) || propertyType.equalsIgnoreCase(Constant.CONDO)) {
             System.out.print("Number of Bedrooms: ");
@@ -81,12 +83,12 @@ public class View {
             System.out.print("Unit Number :");
             String unitNumber = scanner.nextLine().trim();
             if (propertyType.equalsIgnoreCase(Constant.APARTMENT)) {
-                builder = new ApartmentBuilder(streetName, city, postalCode, isRented, streetNumber, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
+                builder = new ApartmentBuilder(streetName, city, postalCode, isRented, streetNumber, monthlyRent, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
             } else {
-                builder = new CondoBuilder(streetName, city, postalCode, isRented, streetNumber, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
+                builder = new CondoBuilder(streetName, city, postalCode, isRented, streetNumber, monthlyRent, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
             }
         } else {
-            builder = new HouseBuilder(streetName, city, postalCode, isRented, streetNumber);
+            builder = new HouseBuilder(streetName, city, postalCode, isRented, streetNumber, monthlyRent);
         }
 
         rentalController.addProperty(builder);
@@ -114,7 +116,7 @@ public class View {
         return null;
     }
 
-    public void addTenant(){
+    public void addTenant() {
 //        private String fullName;
 //        private String phoneNumber;
 //        private String email;
@@ -126,7 +128,7 @@ public class View {
         String phoneNumber = scanner.nextLine();
         System.out.print("email :");
         String email = scanner.nextLine();
-        tenantBuilder = new TenantBuilder(fullName,phoneNumber,email);
+        tenantBuilder = new TenantBuilder(fullName, phoneNumber, email);
 
         rentalController.addTenant(tenantBuilder);
     }

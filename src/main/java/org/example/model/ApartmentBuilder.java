@@ -6,8 +6,8 @@ public class ApartmentBuilder extends UnitBuilder{
     private int squareFootage;
     private String unitNumber;
 
-    public ApartmentBuilder(String streetName, String city, String postalCode, boolean isRented, String streetNumber, int numberOfBedrooms, int numberOfBathrooms, int squareFootage, String unitNumber) {
-        super(streetName, city, postalCode, isRented, streetNumber);
+    public ApartmentBuilder(String streetName, String city, String postalCode, boolean isRented, String streetNumber, double monthlyRent,int numberOfBedrooms, int numberOfBathrooms, int squareFootage, String unitNumber) {
+        super(streetName, city, postalCode, isRented, streetNumber,monthlyRent);
         this.numberOfBedrooms = numberOfBedrooms;
         this.numberOfBathrooms = numberOfBathrooms;
         this.squareFootage = squareFootage;

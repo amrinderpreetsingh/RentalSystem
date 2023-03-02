@@ -11,9 +11,10 @@ public class TenantBuilder {
         this.email = email;
     }
 
-    public Tenant build(){
+    public Tenant build() {
         return new Tenant(this);
     }
+
     public String getFullName() {
         return fullName;
     }

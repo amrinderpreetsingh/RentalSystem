@@ -1,19 +1,19 @@
 package org.example.model;
 
-public class Apartment extends Unit{
+public class Apartment extends Unit {
     private int numberOfBedrooms;
     private int numberOfBathrooms;
     private int squareFootage;
     private String unitNumber;
 
-    public Apartment(ApartmentBuilder apartmentBuilder){
+    public Apartment(ApartmentBuilder apartmentBuilder) {
         super(apartmentBuilder);
         this.numberOfBedrooms = apartmentBuilder.getNumberOfBedrooms();
         this.numberOfBathrooms = apartmentBuilder.getNumberOfBathrooms();
         this.squareFootage = apartmentBuilder.getSquareFootage();
         this.unitNumber = apartmentBuilder.getUnitNumber();
-
     }
+
     public int getNumberOfBedrooms() {
         return numberOfBedrooms;
     }

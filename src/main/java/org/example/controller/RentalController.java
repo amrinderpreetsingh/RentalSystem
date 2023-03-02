@@ -7,13 +7,14 @@ import org.example.utilities.Service;
 
 public class RentalController implements Controller {
 
-    Service service=new Service();
+    Service service = new Service();
+
     @Override
     public void addProperty(UnitBuilder unitBuilder) {
         service.addProperty(unitBuilder);
     }
 
-    public void addTenant(TenantBuilder tenantBuilder){
+    public void addTenant(TenantBuilder tenantBuilder) {
         service.addTenant(tenantBuilder);
     }
 }
