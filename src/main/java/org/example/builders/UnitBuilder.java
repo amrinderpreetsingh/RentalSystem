@@ -1,4 +1,6 @@
-package org.example.model;
+package org.example.builders;
+
+import org.example.model.Unit;
 
 public abstract class UnitBuilder {
     private String streetName;

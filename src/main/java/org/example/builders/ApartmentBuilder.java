@@ -1,4 +1,7 @@
-package org.example.model;
+package org.example.builders;
+
+import org.example.model.Apartment;
+import org.example.model.Unit;
 
 public class ApartmentBuilder extends UnitBuilder{
     private int numberOfBedrooms;

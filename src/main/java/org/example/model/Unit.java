@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.builders.UnitBuilder;
+
 public abstract class Unit {
     private String streetName;
     private String city;

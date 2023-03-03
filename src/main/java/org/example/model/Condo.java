@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.builders.ApartmentBuilder;
+
 public class Condo extends Apartment {
 
     public Condo(ApartmentBuilder apartmentBuilder) {

@@ -1,4 +1,6 @@
-package org.example.model;
+package org.example.builders;
+
+import org.example.model.Tenant;
 
 public class TenantBuilder {
     private String fullName;

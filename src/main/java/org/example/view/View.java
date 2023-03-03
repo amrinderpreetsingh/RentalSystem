@@ -1,6 +1,6 @@
 package org.example.view;
 
-import org.example.model.*;
+import org.example.builders.*;
 import org.example.utilities.Constant;
 import org.example.controller.RentalController;
 

@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.builders.UnitBuilder;
+
 public class House extends Unit {
 
     public House(UnitBuilder unitBuilder) {

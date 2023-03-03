@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.builders.TenantBuilder;
+
 public class Tenant {
     private String fullName;
     private String phoneNumber;
