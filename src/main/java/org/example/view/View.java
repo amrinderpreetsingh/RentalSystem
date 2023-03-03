@@ -1,9 +1,13 @@
 package org.example.view;
 
 import org.example.builders.*;
+import org.example.model.Tenant;
+import org.example.model.Unit;
 import org.example.utilities.Constant;
 import org.example.controller.RentalController;
+import org.example.utilities.Service;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class View {
@@ -33,16 +37,11 @@ public class View {
                     case 2 -> addTenant();
 //                    case 3 -> {
 //                    }
-//                    case 4 -> {
-//                    }
-//                    case 5 -> {
-//                    }
-//                    case 6 -> {
-//                    }
-//                    case 7 -> {
-//                    }
-//                    case 8 -> {
-//                    }
+                    case 4 -> displayProperty();
+                    case 5 -> displayTenants();
+                    case 6 -> displayRented();
+                    case 7 -> displayVacant();
+                    case 8 -> displayLeases();
                     case 9 -> System.exit(-1);
                 }
             } catch (Exception e) {
@@ -124,4 +123,50 @@ public class View {
         rentalController.addTenant(tenantBuilder);
     }
 
+    public void displayProperty(){
+        System.out.println("");
+        for (Unit property :Service.getProperties() ) {
+            System.out.println(property.toString());
+            System.out.println("");
+        }
+    }
+
+    public void displayTenants(){
+        System.out.println("");
+        for (Tenant tenant :Service.getTenants() ) {
+            System.out.println(tenant.toString());
+            System.out.println("");
+        }
+    }
+
+    public void displayRented(){
+        System.out.println("");
+        for (Unit property :Service.getProperties() ) {
+            if(property.isRented()==true){
+                System.out.println(property.toString());
+                System.out.println("");
+            }
+        }
+    }
+    public void displayVacant(){
+        System.out.println("");
+        for (Unit property :Service.getProperties() ) {
+            if(property.isRented()==false){
+                System.out.println(property.toString());
+                System.out.println("");
+            }
+        }
+    }
+
+    public void displayLeases(){
+
+    }
+
+    public void rentUnit(){
+        System.out.println("Here are the available units from which you can rent");
+        displayVacant();
+        System.out.println("Select a Unit number you wish to rent: ");
+
+
+    }
 }

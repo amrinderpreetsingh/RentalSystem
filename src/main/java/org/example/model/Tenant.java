@@ -3,6 +3,7 @@ package org.example.model;
 import org.example.builders.TenantBuilder;
 
 public class Tenant {
+
     private String fullName;
     private String phoneNumber;
     private String email;
@@ -63,4 +64,16 @@ public class Tenant {
     public void setRentPaid(boolean rentPaid) {
         isRentPaid = rentPaid;
     }
+    @Override
+    public String toString() {
+        return "Tenant{" +
+                "fullName='" + fullName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", rentedUnitId=" + rentedUnitId +
+                ", monthlyRent=" + monthlyRent +
+                ", isRentPaid=" + isRentPaid +
+                '}';
+    }
+
 }

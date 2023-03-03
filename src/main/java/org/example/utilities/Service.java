@@ -7,22 +7,25 @@ import org.example.model.*;
 import java.util.ArrayList;
 
 public class Service {
-    ArrayList<Unit> properties = new ArrayList<>();
-    ArrayList<Tenant> tenants = new ArrayList<>();
+    static ArrayList<Unit> properties = new ArrayList<>();
+    static ArrayList<Tenant> tenants = new ArrayList<>();
+    public static ArrayList<Unit> getProperties() {
+        return properties;
+    }
+
+    public static ArrayList<Tenant> getTenants() {
+        return tenants;
+    }
+
+
 
     public void addProperty(UnitBuilder builder) {
         Unit unit = builder.build();
         properties.add(unit);
-        for (Unit property : properties) {
-            System.out.println(property.toString());
-        }
     }
 
     public void addTenant(TenantBuilder builder) {
         Tenant tenant = builder.build();
         tenants.add(tenant);
-        for (Tenant t : tenants) {
-            System.out.println(t.getClass());
-        }
     }
 }
