@@ -14,7 +14,9 @@ public class House extends Unit {
                 "Street Name: " + this.getStreetName() + "\n" +
                 "City: " + this.getCity() + "\n" +
                 "Postal Code: " + this.getPostalCode() + "\n" +
-                "Unit ID: "+this.getUnitId();
+                "Monthly Rent: " + this.getMonthlyRent() + "\n" +
+                "IsRented: " + this.getIsRented() + "\n" +
+                "Unit ID: " + this.getUnitId();
         return info;
     }
 }

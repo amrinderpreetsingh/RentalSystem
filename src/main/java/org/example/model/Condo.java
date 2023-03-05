@@ -19,6 +19,7 @@ public class Condo extends Apartment {
                 "Number of Bathrooms: " + this.getNumberOfBathrooms() + "\n" +
                 "Square Footage: " + this.getSquareFootage() + "\n" +
                 "Monthly Rent: " + this.getMonthlyRent()+"\n" +
+                "IsRented: "+this.getIsRented()+"\n"+
                 "Unit ID: "+this.getUnitId();
         return info;
     }

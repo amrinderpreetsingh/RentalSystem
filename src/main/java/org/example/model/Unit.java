@@ -61,7 +61,7 @@ public abstract class Unit {
         this.postalCode = postalCode;
     }
 
-    public boolean isRented() {
+    public boolean getIsRented() {
         return isRented;
     }
 
