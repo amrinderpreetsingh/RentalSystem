@@ -1,10 +1,16 @@
 package org.example.view;
 
 import org.example.builders.*;
+import org.example.model.Lease;
 import org.example.model.Tenant;
 import org.example.model.Unit;
 import org.example.utilities.Constant;
 import org.example.controller.RentalController;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class View {
@@ -159,5 +165,62 @@ public class View {
         System.out.println("Here are the available units from which you can rent");
         displayVacant();
         System.out.println("Select a Unit number you wish to rent: ");
+    }
+    public void displayAllProperties() {
+        ArrayList<Unit> properties = rentalController.getAllProperties();
+        for (Unit property :
+                properties) {
+            System.out.println(property);
+            System.out.println("--------------------");
+        }
+    }
+
+    public void rentAUnit() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate;
+        Date endDate;
+        String type = addPropertyMenu();
+        ArrayList<Unit> properties = rentalController.getPropertiesByType(type);
+        for (Unit property :
+                properties) {
+            System.out.println(property);
+        }
+        System.out.print("Enter the unit Id of Property you want to rent: ");
+        int id = Integer.parseInt(scanner.nextLine().trim());
+        Unit property = rentalController.getPropertyById(id);
+        if (property == null) {
+            System.out.println("You entered a wrong id.");
+            return;
+        }
+        System.out.print("Is Tenant already registered in the system?(Enter Y/N): ");
+        String ans = scanner.nextLine().trim();
+        if (ans.equalsIgnoreCase("N")) {
+            addTenant();
+        }
+        System.out.print("Enter tenant registered email address: ");
+        String email = scanner.nextLine().trim();
+        Tenant tenant = rentalController.getTenantByEmail(email);
+        if (tenant == null) {
+            System.out.println("You entered wrong email address.");
+            return;
+        }
+        System.out.print("Enter the start date of lease(yyyy-MM-dd): ");
+        try {
+            startDate = simpleDateFormat.parse(scanner.nextLine());
+            System.out.print("Enter the end date of lease(yyyy-MM-dd): ");
+            endDate = simpleDateFormat.parse(scanner.nextLine());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        LeaseBuilder leaseBuilder = new LeaseBuilder(property, tenant, startDate, endDate);
+        rentalController.addLease(leaseBuilder);
+    }
+
+    public void displayAllLeases() {
+        ArrayList<Lease> leases = rentalController.getLeases();
+        for (Lease lease :
+                leases) {
+            System.out.println(lease);
+        }
     }
 }
