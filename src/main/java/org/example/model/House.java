@@ -13,7 +13,8 @@ public class House extends Unit {
         String info = "Street Number: " + this.getStreetNumber() + "\n" +
                 "Street Name: " + this.getStreetName() + "\n" +
                 "City: " + this.getCity() + "\n" +
-                "Postal Code: " + this.getPostalCode() + "\n";
+                "Postal Code: " + this.getPostalCode() + "\n" +
+                "Unit ID: "+this.getUnitId();
         return info;
     }
 }

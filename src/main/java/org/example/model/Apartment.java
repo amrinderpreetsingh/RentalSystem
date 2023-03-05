@@ -58,7 +58,8 @@ public class Apartment extends Unit {
                 "Number of Bedrooms: " + this.getNumberOfBedrooms() + "\n" +
                 "Number of Bathrooms: " + this.getNumberOfBathrooms() + "\n" +
                 "Square Footage: " + this.getSquareFootage() + "\n" +
-                "Monthly Rent: " + this.getMonthlyRent();
+                "Monthly Rent: " + this.getMonthlyRent()+"\n" +
+                "Unit ID: "+this.getUnitId();
         return info;
     }
 }

@@ -65,7 +65,7 @@ public abstract class Unit {
         return isRented;
     }
 
-    public void setRented(boolean rented) {
+    public void setIsRented(boolean rented) {
         isRented = rented;
     }
 
