@@ -5,9 +5,6 @@ import org.example.model.Tenant;
 import org.example.model.Unit;
 import org.example.utilities.Constant;
 import org.example.controller.RentalController;
-import org.example.utilities.Service;
-
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class View {
@@ -125,7 +122,7 @@ public class View {
 
     public void displayProperty(){
         System.out.println("");
-        for (Unit property :Service.getProperties() ) {
+        for (Unit property :rentalController.getProperties()) {
             System.out.println(property.toString());
             System.out.println("");
         }
@@ -133,7 +130,7 @@ public class View {
 
     public void displayTenants(){
         System.out.println("");
-        for (Tenant tenant :Service.getTenants() ) {
+        for (Tenant tenant :rentalController.getTenants() ) {
             System.out.println(tenant.toString());
             System.out.println("");
         }
@@ -141,20 +138,16 @@ public class View {
 
     public void displayRented(){
         System.out.println("");
-        for (Unit property :Service.getProperties() ) {
-            if(property.isRented()==true){
+        for (Unit property :rentalController.displayRented() ) {
                 System.out.println(property.toString());
                 System.out.println("");
-            }
         }
     }
     public void displayVacant(){
         System.out.println("");
-        for (Unit property :Service.getProperties() ) {
-            if(property.isRented()==false){
+        for (Unit property :rentalController.displayVacant() ) {
                 System.out.println(property.toString());
                 System.out.println("");
-            }
         }
     }
 
@@ -166,7 +159,5 @@ public class View {
         System.out.println("Here are the available units from which you can rent");
         displayVacant();
         System.out.println("Select a Unit number you wish to rent: ");
-
-
     }
 }
