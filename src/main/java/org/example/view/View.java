@@ -201,18 +201,7 @@ public class View {
                 return;
             }
         }
-//        System.out.print("Is Tenant already registered in the system?(Enter Y/N): ");
-//        String ans = scanner.nextLine().trim();
-//        if (ans.equalsIgnoreCase("N")) {
-//            addTenant();
-//        }
-//        System.out.print("Enter tenant registered email address: ");
-//        String email = scanner.nextLine().trim();
-//        Tenant tenant = rentalController.getTenantByEmail(email);
-//        if (tenant == null) {
-//            System.out.println("You entered wrong email address.");
-//            return;
-//        }
+
         System.out.print("Enter the start date of lease(yyyy-MM-dd): ");
         try {
             startDate = simpleDateFormat.parse(scanner.nextLine());

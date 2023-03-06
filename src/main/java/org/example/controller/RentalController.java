@@ -117,6 +117,11 @@ public class RentalController implements Controller {
         return service.getVacantUnits();
     }
 
+    /**
+     * {@inheritDoc}
+     * @param unit
+     * @param tenant
+     */
     public void subscribeTenantToUnit(Unit unit, Tenant tenant) {
         service.subscribeToUnit(unit, tenant);
     }

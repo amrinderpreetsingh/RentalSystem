@@ -78,4 +78,11 @@ public interface Controller {
      * @return
      */
     public ArrayList<Unit> getVacantUnits();
+
+    /**
+     * Subscribe tenant to the given property.
+     * @param unit
+     * @param tenant
+     */
+    public void subscribeTenantToUnit(Unit unit, Tenant tenant);
 }
