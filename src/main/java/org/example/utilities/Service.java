@@ -90,4 +90,16 @@ public class Service {
         }
         return vacantUnits;
     }
+    
+    public void sub(Unit unit,Tenant tenant){
+        Lease l = null;
+        for (Lease lease :
+                leases) {
+            if(lease.getProperty().getUnitId()==unit.getUnitId()){
+                l=lease;
+            }
+        }
+        l.addSubscriber(tenant);
+        l.notifySubscriber();
+    }
 }
