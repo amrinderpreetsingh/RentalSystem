@@ -1,10 +1,18 @@
 package org.example.view;
 
 import org.example.builders.*;
+import org.example.model.Lease;
+import org.example.model.Tenant;
+import org.example.model.Unit;
 import org.example.utilities.Constant;
 import org.example.controller.RentalController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+
 
 public class View {
     Scanner scanner = new Scanner(System.in);
@@ -31,18 +39,12 @@ public class View {
                 switch (choice) {
                     case 1 -> addProperty();
                     case 2 -> addTenant();
-//                    case 3 -> {
-//                    }
-//                    case 4 -> {
-//                    }
-//                    case 5 -> {
-//                    }
-//                    case 6 -> {
-//                    }
-//                    case 7 -> {
-//                    }
-//                    case 8 -> {
-//                    }
+                    case 3 -> rentAUnit();
+                    case 4 -> displayAllProperties();
+                    case 5 -> displayAllTenants();
+                    case 6 -> displayRentedProperties();
+                    case 7 -> displayVacantProperties();
+                    case 8 -> displayAllLeases();
                     case 9 -> System.exit(-1);
                 }
             } catch (Exception e) {
@@ -72,11 +74,11 @@ public class View {
             int numberOfBedrooms = Integer.parseInt(scanner.nextLine().trim());
             System.out.print("Number of Bathrooms: ");
             int numberOfBathrooms = Integer.parseInt(scanner.nextLine().trim());
-
             System.out.print("Square Footage: ");
             int squareFootage = Integer.parseInt(scanner.nextLine().trim());
             System.out.print("Unit Number: ");
             String unitNumber = scanner.nextLine().trim();
+
             if (propertyType.equalsIgnoreCase(Constant.APARTMENT)) {
                 builder = new ApartmentBuilder(streetName, city, postalCode, isRented, streetNumber, monthlyRent, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
             } else {
@@ -87,6 +89,7 @@ public class View {
         }
 
         rentalController.addProperty(builder);
+        System.out.println("Property Added!!");
     }
 
     public String addPropertyMenu() {
@@ -111,7 +114,7 @@ public class View {
         return null;
     }
 
-    public void addTenant(){
+    public void addTenant() {
         TenantBuilder tenantBuilder = null;
         System.out.print("Full Name: ");
         String fullName = scanner.nextLine();
@@ -122,6 +125,86 @@ public class View {
         tenantBuilder = new TenantBuilder(fullName, phoneNumber, email);
 
         rentalController.addTenant(tenantBuilder);
+        System.out.println("tenant added!!");
     }
 
+    public void displayAllProperties() {
+        for (Unit property : rentalController.getProperties()) {
+            System.out.println(property);
+            System.out.println();
+        }
+    }
+
+    public void displayAllTenants() {
+        for (Tenant tenant : rentalController.getTenants()) {
+            System.out.println(tenant);
+        }
+    }
+
+    public void displayRentedProperties() {
+        System.out.println("List of all rented properties.");
+        for (Unit property : rentalController.getRentedUnits()) {
+            System.out.println(property);
+            System.out.println();
+        }
+    }
+
+    public void displayVacantProperties() {
+        System.out.println("List of all vacant properties.");
+        for (Unit property : rentalController.getVacantUnits()) {
+            System.out.println(property);
+            System.out.println();
+        }
+    }
+
+    public void rentAUnit() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT);
+        Date startDate;
+        Date endDate;
+        String type = addPropertyMenu();
+        ArrayList<Unit> properties = rentalController.getPropertiesByType(type);
+        for (Unit property :
+                properties) {
+            System.out.println(property);
+        }
+        System.out.print("Enter the unit Id of Property you want to rent: ");
+        int id = Integer.parseInt(scanner.nextLine().trim());
+        Unit property = rentalController.getPropertyById(id);
+        if (property == null) {
+            System.out.println("You entered a wrong id.");
+            return;
+        }
+        System.out.print("Is Tenant already registered in the system?(Enter Y/N): ");
+        String ans = scanner.nextLine().trim();
+        if (ans.equalsIgnoreCase("N")) {
+            addTenant();
+        }
+        System.out.print("Enter tenant registered email address: ");
+        String email = scanner.nextLine().trim();
+        Tenant tenant = rentalController.getTenantByEmail(email);
+        if (tenant == null) {
+            System.out.println("You entered wrong email address.");
+            return;
+        }
+        System.out.print("Enter the start date of lease(yyyy-MM-dd): ");
+        try {
+            startDate = simpleDateFormat.parse(scanner.nextLine());
+            System.out.print("Enter the end date of lease(yyyy-MM-dd): ");
+            endDate = simpleDateFormat.parse(scanner.nextLine());
+        } catch (ParseException e) {
+            System.out.println("Wrong date format.");
+            return;
+        }
+        LeaseBuilder leaseBuilder = new LeaseBuilder(property, tenant, startDate, endDate);
+        rentalController.addLease(leaseBuilder);
+        System.out.println("Congratulations! Lease added.");
+    }
+
+    public void displayAllLeases() {
+        ArrayList<Lease> leases = rentalController.getLeases();
+        for (Lease lease :
+                leases) {
+            System.out.println(lease);
+        }
+    }
 }
