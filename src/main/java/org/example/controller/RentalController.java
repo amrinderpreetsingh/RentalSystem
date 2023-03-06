@@ -14,48 +14,106 @@ public class RentalController implements Controller {
 
     Service service = new Service();
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param unitBuilder
+     */
     @Override
     public void addProperty(UnitBuilder unitBuilder) {
         service.addProperty(unitBuilder);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param tenantBuilder
+     */
     public void addTenant(TenantBuilder tenantBuilder) {
         service.addTenant(tenantBuilder);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param type
+     * @return
+     */
     public ArrayList<Unit> getPropertiesByType(String type) {
         return service.getPropertiesByType(type);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param id
+     * @return
+     */
     public Unit getPropertyById(int id) {
         return service.getPropertyById(id);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param email
+     * @return
+     */
     public Tenant getTenantByEmail(String email) {
         return service.getTenantByEmail(email);
     }
 
-    public void addLease(LeaseBuilder leaseBuilder){
+    /**
+     * {@inheritDoc}
+     *
+     * @param leaseBuilder
+     */
+    public void addLease(LeaseBuilder leaseBuilder) {
         service.addLease(leaseBuilder);
     }
 
-    public ArrayList<Lease>getLeases(){
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    public ArrayList<Lease> getLeases() {
         return service.getAllLeases();
     }
 
-    public ArrayList<Unit> getProperties(){
-      return service.getProperties();
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    public ArrayList<Unit> getProperties() {
+        return service.getProperties();
     }
 
-    public ArrayList<Tenant> getTenants(){
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    public ArrayList<Tenant> getTenants() {
         return service.getTenants();
     }
 
-    public ArrayList<Unit> getRentedUnits(){
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    public ArrayList<Unit> getRentedUnits() {
         return service.getRentedUnits();
     }
 
-    public ArrayList<Unit> getVacantUnits(){
-       return service.getVacantUnits();
+    /**
+     * {@inheritDoc}
+     *
+     * @return
+     */
+    public ArrayList<Unit> getVacantUnits() {
+        return service.getVacantUnits();
     }
 }
