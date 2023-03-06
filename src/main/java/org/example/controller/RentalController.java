@@ -23,10 +23,6 @@ public class RentalController implements Controller {
         service.addTenant(tenantBuilder);
     }
 
-    public ArrayList<Unit> getAllProperties() {
-        return service.getAllProperties();
-    }
-
     public ArrayList<Unit> getPropertiesByType(String type) {
         return service.getPropertiesByType(type);
     }
