@@ -31,10 +31,6 @@ public class Service {
         tenants.add(tenant);
     }
 
-    public ArrayList<Unit> getAllProperties() {
-        return properties;
-    }
-
     public ArrayList<Unit> getPropertiesByType(String type) {
         ArrayList<Unit> propertiesOfOneType = new ArrayList<>();
         for (Unit property : properties) {
