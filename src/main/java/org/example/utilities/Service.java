@@ -65,9 +65,6 @@ public class Service {
         builder.getUnit().setIsRented(true);
         Lease unit = builder.build();
         leases.add(unit);
-        for (Lease lease : leases) {
-            System.out.println(lease);
-        }
     }
 
     public ArrayList<Lease> getAllLeases() {

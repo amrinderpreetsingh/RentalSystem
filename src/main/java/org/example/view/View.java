@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+
 public class View {
     Scanner scanner = new Scanner(System.in);
     RentalController rentalController = new RentalController();
@@ -39,10 +40,10 @@ public class View {
                     case 1 -> addProperty();
                     case 2 -> addTenant();
                     case 3 -> rentAUnit();
-                    case 4 -> displayProperties();
-                    case 5 -> displayTenants();
-                    case 6 -> displayRented();
-                    case 7 -> displayVacant();
+                    case 4 -> displayAllProperties();
+                    case 5 -> displayAllTenants();
+                    case 6 -> displayRentedProperties();
+                    case 7 -> displayVacantProperties();
                     case 8 -> displayAllLeases();
                     case 9 -> System.exit(-1);
                 }
@@ -73,11 +74,11 @@ public class View {
             int numberOfBedrooms = Integer.parseInt(scanner.nextLine().trim());
             System.out.print("Number of Bathrooms: ");
             int numberOfBathrooms = Integer.parseInt(scanner.nextLine().trim());
-
             System.out.print("Square Footage: ");
             int squareFootage = Integer.parseInt(scanner.nextLine().trim());
             System.out.print("Unit Number: ");
             String unitNumber = scanner.nextLine().trim();
+
             if (propertyType.equalsIgnoreCase(Constant.APARTMENT)) {
                 builder = new ApartmentBuilder(streetName, city, postalCode, isRented, streetNumber, monthlyRent, numberOfBedrooms, numberOfBathrooms, squareFootage, unitNumber);
             } else {
@@ -88,6 +89,7 @@ public class View {
         }
 
         rentalController.addProperty(builder);
+        System.out.println("Property Added!!");
     }
 
     public String addPropertyMenu() {
@@ -112,7 +114,7 @@ public class View {
         return null;
     }
 
-    public void addTenant(){
+    public void addTenant() {
         TenantBuilder tenantBuilder = null;
         System.out.print("Full Name: ");
         String fullName = scanner.nextLine();
@@ -123,41 +125,40 @@ public class View {
         tenantBuilder = new TenantBuilder(fullName, phoneNumber, email);
 
         rentalController.addTenant(tenantBuilder);
+        System.out.println("tenant added!!");
     }
 
-    public void displayProperties(){
-        System.out.println("");
-        for (Unit property :rentalController.getProperties()) {
+    public void displayAllProperties() {
+        for (Unit property : rentalController.getProperties()) {
             System.out.println(property);
-            System.out.println("");
+            System.out.println();
         }
     }
 
-    public void displayTenants(){
-        System.out.println("");
-        for (Tenant tenant :rentalController.getTenants() ) {
+    public void displayAllTenants() {
+        for (Tenant tenant : rentalController.getTenants()) {
             System.out.println(tenant);
-            System.out.println("");
         }
     }
 
-    public void displayRented(){
-        System.out.println("");
-        for (Unit property :rentalController.getRentedUnits() ) {
-                System.out.println(property);
-                System.out.println("");
+    public void displayRentedProperties() {
+        System.out.println("List of all rented properties.");
+        for (Unit property : rentalController.getRentedUnits()) {
+            System.out.println(property);
+            System.out.println();
         }
     }
-    public void displayVacant(){
-        System.out.println("");
-        for (Unit property :rentalController.getVacantUnits() ) {
-                System.out.println(property);
-                System.out.println("");
+
+    public void displayVacantProperties() {
+        System.out.println("List of all vacant properties.");
+        for (Unit property : rentalController.getVacantUnits()) {
+            System.out.println(property);
+            System.out.println();
         }
     }
 
     public void rentAUnit() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT);
         Date startDate;
         Date endDate;
         String type = addPropertyMenu();
@@ -191,10 +192,12 @@ public class View {
             System.out.print("Enter the end date of lease(yyyy-MM-dd): ");
             endDate = simpleDateFormat.parse(scanner.nextLine());
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            System.out.println("Wrong date format.");
+            return;
         }
         LeaseBuilder leaseBuilder = new LeaseBuilder(property, tenant, startDate, endDate);
         rentalController.addLease(leaseBuilder);
+        System.out.println("Congratulations! Lease added.");
     }
 
     public void displayAllLeases() {

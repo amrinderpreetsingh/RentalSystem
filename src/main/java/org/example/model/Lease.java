@@ -1,6 +1,7 @@
 package org.example.model;
 
 import org.example.builders.LeaseBuilder;
+import org.example.utilities.Constant;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,9 +63,9 @@ public class Lease {
 
     @Override
     public String toString() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return "Unit Details:\n" + this.getProperty().toString() + "\n" +
-                "Tenant Details:" + "\n" +
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT);
+        return "Unit Details:\n" + this.getProperty() + "\n" +
+                "Tenant Details:" +this.getTenant()+ "\n" +
                 "Star Date: " + simpleDateFormat.format(this.getStartDate()) + "\n" +
                 "End Date: " + simpleDateFormat.format(this.getEndDate());
     }
