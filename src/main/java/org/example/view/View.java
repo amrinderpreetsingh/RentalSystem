@@ -193,7 +193,7 @@ public class View {
             System.out.println("Do you want to subscribe to get notification when lease end?(Y/N)");
             String response=scanner.nextLine().trim();
             if(response.equalsIgnoreCase("Y")){
-            rentalController.Subscribe(property,tenant);
+            rentalController.subscribeTenantToUnit(property,tenant);
             return;
             }else{
                 System.out.println("You selected No.");

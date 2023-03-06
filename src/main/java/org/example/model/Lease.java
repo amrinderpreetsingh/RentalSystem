@@ -87,17 +87,18 @@ public class Lease implements LeaseObserverable {
     }
 
     @Override
-    public void UnSubscribe(Tenant tenant) {
+    public void unSubscribe(Tenant tenant) {
         subscribers.remove(tenant);
     }
 
     @Override
     public void notifySubscriber() {
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat(Constant.DATE_FORMAT);
-        if(simpleDateFormat.format(this.getEndDate()).equalsIgnoreCase(String.valueOf(java.time.LocalDate.now()))){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT);
+        if (simpleDateFormat.format(this.getEndDate()).equalsIgnoreCase(String.valueOf(java.time.LocalDate.now()))) {
             for (Tenant sub :
                     subscribers) {
                 sub.updateTenant(property);
+                unSubscribe(sub);
             }
         }
     }

@@ -117,7 +117,7 @@ public class RentalController implements Controller {
         return service.getVacantUnits();
     }
 
-    public void Subscribe(Unit unit,Tenant tenant){
-    service.sub(unit,tenant);
+    public void subscribeTenantToUnit(Unit unit, Tenant tenant) {
+        service.subscribeToUnit(unit, tenant);
     }
 }
