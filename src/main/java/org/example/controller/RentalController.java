@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.builders.LeaseBuilder;
 import org.example.builders.TenantBuilder;
 import org.example.builders.UnitBuilder;
 import org.example.model.Lease;
@@ -47,34 +48,18 @@ public class RentalController implements Controller {
     }
 
     public ArrayList<Unit> getProperties(){
-        properties =service.getProperties();
-        return properties;
+      return service.getProperties();
     }
 
     public ArrayList<Tenant> getTenants(){
-        tenants=service.getTenants();
-        return tenants;
+        return service.getTenants();
     }
 
-    public ArrayList<Unit> displayRented(){
-        properties =service.getProperties();
-        ArrayList<Unit> rented = new ArrayList<>();
-        for (Unit unit:properties) {
-            if(unit.isRented()){
-                rented.add(unit);
-            }
-        }
-        return rented;
+    public ArrayList<Unit> getRentedUnits(){
+        return service.getRentedUnits();
     }
 
-    public ArrayList<Unit> displayVacant(){
-        properties =service.getProperties();
-        ArrayList<Unit> isVacant = new ArrayList<>();
-        for (Unit unit:properties) {
-            if(!unit.isRented()){
-                isVacant.add(unit);
-            }
-        }
-        return isVacant;
+    public ArrayList<Unit> getVacantUnits(){
+       return service.getVacantUnits();
     }
 }

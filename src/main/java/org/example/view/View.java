@@ -38,13 +38,12 @@ public class View {
                 switch (choice) {
                     case 1 -> addProperty();
                     case 2 -> addTenant();
-//                    case 3 -> {
-//                    }
-                    case 4 -> displayProperty();
+                    case 3 -> rentAUnit();
+                    case 4 -> displayProperties();
                     case 5 -> displayTenants();
                     case 6 -> displayRented();
                     case 7 -> displayVacant();
-                    case 8 -> displayLeases();
+                    case 8 -> displayAllLeases();
                     case 9 -> System.exit(-1);
                 }
             } catch (Exception e) {
@@ -126,10 +125,10 @@ public class View {
         rentalController.addTenant(tenantBuilder);
     }
 
-    public void displayProperty(){
+    public void displayProperties(){
         System.out.println("");
         for (Unit property :rentalController.getProperties()) {
-            System.out.println(property.toString());
+            System.out.println(property);
             System.out.println("");
         }
     }
@@ -137,41 +136,23 @@ public class View {
     public void displayTenants(){
         System.out.println("");
         for (Tenant tenant :rentalController.getTenants() ) {
-            System.out.println(tenant.toString());
+            System.out.println(tenant);
             System.out.println("");
         }
     }
 
     public void displayRented(){
         System.out.println("");
-        for (Unit property :rentalController.displayRented() ) {
-                System.out.println(property.toString());
+        for (Unit property :rentalController.getRentedUnits() ) {
+                System.out.println(property);
                 System.out.println("");
         }
     }
     public void displayVacant(){
         System.out.println("");
-        for (Unit property :rentalController.displayVacant() ) {
-                System.out.println(property.toString());
+        for (Unit property :rentalController.getVacantUnits() ) {
+                System.out.println(property);
                 System.out.println("");
-        }
-    }
-
-    public void displayLeases(){
-
-    }
-
-    public void rentUnit(){
-        System.out.println("Here are the available units from which you can rent");
-        displayVacant();
-        System.out.println("Select a Unit number you wish to rent: ");
-    }
-    public void displayAllProperties() {
-        ArrayList<Unit> properties = rentalController.getAllProperties();
-        for (Unit property :
-                properties) {
-            System.out.println(property);
-            System.out.println("--------------------");
         }
     }
 

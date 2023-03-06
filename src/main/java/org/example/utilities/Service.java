@@ -8,11 +8,12 @@ import org.example.model.*;
 import java.util.ArrayList;
 
 public class Service {
-     ArrayList<Unit> properties = new ArrayList<>();
-     ArrayList<Tenant> tenants = new ArrayList<>();
-      public ArrayList<Unit> getProperties() {
+    ArrayList<Unit> properties = new ArrayList<>();
+    ArrayList<Tenant> tenants = new ArrayList<>();
+
+    public ArrayList<Unit> getProperties() {
         return properties;
-     }
+    }
 
     public ArrayList<Tenant> getTenants() {
         return tenants;
@@ -73,7 +74,27 @@ public class Service {
         }
     }
 
-    public ArrayList<Lease> getAllLeases(){
+    public ArrayList<Lease> getAllLeases() {
         return leases;
+    }
+
+    public ArrayList<Unit> getRentedUnits() {
+        ArrayList<Unit> rentedUnits = new ArrayList<>();
+        for (Unit unit : properties) {
+            if (unit.getIsRented()) {
+                rentedUnits.add(unit);
+            }
+        }
+        return rentedUnits;
+    }
+
+    public ArrayList<Unit> getVacantUnits() {
+        ArrayList<Unit> vacantUnits = new ArrayList<>();
+        for (Unit unit : properties) {
+            if (!unit.getIsRented()) {
+                vacantUnits.add(unit);
+            }
+        }
+        return vacantUnits;
     }
 }
