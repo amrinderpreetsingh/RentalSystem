@@ -12,8 +12,11 @@ import java.util.ArrayList;
 
 public class RentalController implements Controller {
 
-    Service service = new Service();
+    Service service;
 
+    public RentalController(){
+        service=new Service();
+    }
     /**
      * {@inheritDoc}
      *

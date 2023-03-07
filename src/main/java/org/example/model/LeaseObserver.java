@@ -1,5 +1,5 @@
 package org.example.model;
 
-public interface LeaseSubscriber {
+public interface LeaseObserver {
     public void updateTenant(Unit unit);
 }

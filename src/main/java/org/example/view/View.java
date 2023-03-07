@@ -15,8 +15,13 @@ import java.util.Scanner;
 
 
 public class View {
-    Scanner scanner = new Scanner(System.in);
-    RentalController rentalController = new RentalController();
+    Scanner scanner;
+    RentalController rentalController;
+
+    public View() {
+        scanner = new Scanner(System.in);
+        rentalController = new RentalController();
+    }
 
     public void menu() {
         while (true) {
@@ -55,7 +60,7 @@ public class View {
     }
 
     public void addProperty() {
-        String propertyType = addPropertyMenu();
+        String propertyType = displayPropertyType();
         UnitBuilder builder = null;
         System.out.println("Enter the property details");
         System.out.print("Street Name: ");
@@ -92,7 +97,7 @@ public class View {
         System.out.println("Property Added!!");
     }
 
-    public String addPropertyMenu() {
+    public String displayPropertyType() {
         System.out.print("Please select a property type >>\n" +
                 "1. Apartment \n" +
                 "2. Condo \n" +
@@ -174,7 +179,7 @@ public class View {
             return;
         }
 
-        String type = addPropertyMenu();
+        String type = displayPropertyType();
         ArrayList<Unit> properties = rentalController.getPropertiesByType(type);
         for (Unit property :
                 properties) {
@@ -188,14 +193,14 @@ public class View {
             System.out.println("You entered a wrong id.");
             return;
         }
-        if(property.getIsRented()){
+        if (property.getIsRented()) {
             System.out.println("you selected an already rented property.");
             System.out.println("Do you want to subscribe to get notification when lease end?(Y/N)");
-            String response=scanner.nextLine().trim();
-            if(response.equalsIgnoreCase("Y")){
-            rentalController.subscribeTenantToUnit(property,tenant);
-            return;
-            }else{
+            String response = scanner.nextLine().trim();
+            if (response.equalsIgnoreCase("Y")) {
+                rentalController.subscribeTenantToUnit(property, tenant);
+                return;
+            } else {
                 System.out.println("You selected No.");
                 System.out.println("thank you");
                 return;

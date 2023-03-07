@@ -2,7 +2,7 @@ package org.example.model;
 
 import org.example.builders.TenantBuilder;
 
-public class Tenant implements LeaseSubscriber {
+public class Tenant implements LeaseObserver {
     private String fullName;
     private String phoneNumber;
     private String email;

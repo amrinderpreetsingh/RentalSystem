@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Lease implements LeaseObserverable {
+public class Lease implements LeaseSubject {
     private Unit property;
     private Tenant tenant;
     private double monthlyRent;
@@ -15,7 +15,7 @@ public class Lease implements LeaseObserverable {
     private Date endDate;
     private int leaseId;
     private static int _id = 300;
-    private ArrayList<Tenant> subscribers;
+    private ArrayList<Tenant> observers;
 
     public Lease(LeaseBuilder leaseBuilder) {
         property = leaseBuilder.getUnit();
@@ -25,7 +25,7 @@ public class Lease implements LeaseObserverable {
         endDate = leaseBuilder.getEndDate();
         leaseId = _id;
         _id++;
-        subscribers = new ArrayList<>();
+        observers = new ArrayList<>();
     }
 
     public int getLeaseId() {
@@ -83,12 +83,12 @@ public class Lease implements LeaseObserverable {
 
     @Override
     public void addSubscriber(Tenant tenant) {
-        subscribers.add(tenant);
+        observers.add(tenant);
     }
 
     @Override
     public void unSubscribe(Tenant tenant) {
-        subscribers.remove(tenant);
+        observers.remove(tenant);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Lease implements LeaseObserverable {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT);
         if (simpleDateFormat.format(this.getEndDate()).equalsIgnoreCase(String.valueOf(java.time.LocalDate.now()))) {
             for (Tenant sub :
-                    subscribers) {
+                    observers) {
                 sub.updateTenant(property);
                 unSubscribe(sub);
             }
