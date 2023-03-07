@@ -13,7 +13,9 @@ public class Service {
     public Service() {
         db = Database.getInstance();
     }
-
+    public Service(Database db){
+        this.db=db;
+    }
     public ArrayList<Unit> getProperties() {
         return db.getProperties();
     }
