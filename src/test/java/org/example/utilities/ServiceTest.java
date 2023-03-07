@@ -2,23 +2,18 @@ package org.example.utilities;
 
 import org.example.builders.ApartmentBuilder;
 import org.example.builders.CondoBuilder;
+import org.example.builders.HouseBuilder;
 import org.example.builders.TenantBuilder;
 import org.example.model.Tenant;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.example.builders.HouseBuilder;
 import org.example.model.Unit;
-import org.example.utilities.Database;
-import org.example.utilities.Service;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class ServiceTest {
     Database db;
