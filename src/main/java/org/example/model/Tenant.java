@@ -2,7 +2,7 @@ package org.example.model;
 
 import org.example.builders.TenantBuilder;
 
-public class Tenant {
+public class Tenant implements LeaseObserver {
     private String fullName;
     private String phoneNumber;
     private String email;
@@ -20,6 +20,10 @@ public class Tenant {
         this.email = tenantBuilder.getEmail();
         this.tenantId = _id;
         _id++;
+    }
+
+    public void updateTenant(Unit unit){
+        System.out.println(unit+"\n"+"This property is available for rent.");
     }
 
     public String getFullName() {

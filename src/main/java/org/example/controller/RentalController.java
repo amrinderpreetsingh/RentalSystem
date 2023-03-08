@@ -12,8 +12,11 @@ import java.util.ArrayList;
 
 public class RentalController implements Controller {
 
-    Service service = new Service();
+    Service service;
 
+    public RentalController(){
+        service=new Service();
+    }
     /**
      * {@inheritDoc}
      *
@@ -115,5 +118,14 @@ public class RentalController implements Controller {
      */
     public ArrayList<Unit> getVacantUnits() {
         return service.getVacantUnits();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @param unit
+     * @param tenant
+     */
+    public void subscribeTenantToUnit(Unit unit, Tenant tenant) {
+        service.subscribeToUnit(unit, tenant);
     }
 }

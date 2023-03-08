@@ -15,8 +15,13 @@ import java.util.Scanner;
 
 
 public class View {
-    Scanner scanner = new Scanner(System.in);
-    RentalController rentalController = new RentalController();
+    Scanner scanner;
+    RentalController rentalController;
+
+    public View() {
+        scanner = new Scanner(System.in);
+        rentalController = new RentalController();
+    }
 
     public void menu() {
         while (true) {
@@ -55,7 +60,7 @@ public class View {
     }
 
     public void addProperty() {
-        String propertyType = addPropertyMenu();
+        String propertyType = displayPropertyType();
         UnitBuilder builder = null;
         System.out.println("Enter the property details");
         System.out.print("Street Name: ");
@@ -92,7 +97,7 @@ public class View {
         System.out.println("Property Added!!");
     }
 
-    public String addPropertyMenu() {
+    public String displayPropertyType() {
         System.out.print("Please select a property type >>\n" +
                 "1. Apartment \n" +
                 "2. Condo \n" +
@@ -161,19 +166,6 @@ public class View {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT);
         Date startDate;
         Date endDate;
-        String type = addPropertyMenu();
-        ArrayList<Unit> properties = rentalController.getPropertiesByType(type);
-        for (Unit property :
-                properties) {
-            System.out.println(property);
-        }
-        System.out.print("Enter the unit Id of Property you want to rent: ");
-        int id = Integer.parseInt(scanner.nextLine().trim());
-        Unit property = rentalController.getPropertyById(id);
-        if (property == null) {
-            System.out.println("You entered a wrong id.");
-            return;
-        }
         System.out.print("Is Tenant already registered in the system?(Enter Y/N): ");
         String ans = scanner.nextLine().trim();
         if (ans.equalsIgnoreCase("N")) {
@@ -186,6 +178,35 @@ public class View {
             System.out.println("You entered wrong email address.");
             return;
         }
+
+        String type = displayPropertyType();
+        ArrayList<Unit> properties = rentalController.getPropertiesByType(type);
+        for (Unit property :
+                properties) {
+            System.out.println(property);
+            System.out.println("-------------------");
+        }
+        System.out.print("Enter the unit Id of Property you want to rent: ");
+        int id = Integer.parseInt(scanner.nextLine().trim());
+        Unit property = rentalController.getPropertyById(id);
+        if (property == null) {
+            System.out.println("You entered a wrong id.");
+            return;
+        }
+        if (property.getIsRented()) {
+            System.out.println("you selected an already rented property.");
+            System.out.println("Do you want to subscribe to get notification when lease end?(Y/N)");
+            String response = scanner.nextLine().trim();
+            if (response.equalsIgnoreCase("Y")) {
+                rentalController.subscribeTenantToUnit(property, tenant);
+                return;
+            } else {
+                System.out.println("You selected No.");
+                System.out.println("thank you");
+                return;
+            }
+        }
+
         System.out.print("Enter the start date of lease(yyyy-MM-dd): ");
         try {
             startDate = simpleDateFormat.parse(scanner.nextLine());

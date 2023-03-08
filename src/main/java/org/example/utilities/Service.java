@@ -8,32 +8,35 @@ import org.example.model.*;
 import java.util.ArrayList;
 
 public class Service {
-    ArrayList<Unit> properties = new ArrayList<>();
-    ArrayList<Tenant> tenants = new ArrayList<>();
+    Database db;
 
+    public Service() {
+        db = Database.getInstance();
+    }
+    public Service(Database db){
+        this.db=db;
+    }
     public ArrayList<Unit> getProperties() {
-        return properties;
+        return db.getProperties();
     }
 
     public ArrayList<Tenant> getTenants() {
-        return tenants;
+        return db.getTenants();
     }
-
-    ArrayList<Lease> leases = new ArrayList<>();
 
     public void addProperty(UnitBuilder builder) {
         Unit unit = builder.build();
-        properties.add(unit);
+        db.addProperty(unit);
     }
 
     public void addTenant(TenantBuilder builder) {
         Tenant tenant = builder.build();
-        tenants.add(tenant);
+        db.addTenant(tenant);
     }
 
     public ArrayList<Unit> getPropertiesByType(String type) {
         ArrayList<Unit> propertiesOfOneType = new ArrayList<>();
-        for (Unit property : properties) {
+        for (Unit property : db.getProperties()) {
             if (property.getClass().getSimpleName().equalsIgnoreCase(type)) {
                 propertiesOfOneType.add(property);
             }
@@ -42,7 +45,7 @@ public class Service {
     }
 
     public Unit getPropertyById(int id) {
-        for (Unit property : properties) {
+        for (Unit property : db.getProperties()) {
             if (property.getUnitId() == id) {
                 return property;
             }
@@ -51,7 +54,7 @@ public class Service {
     }
 
     public Tenant getTenantByEmail(String email) {
-        for (Tenant tenant : tenants) {
+        for (Tenant tenant : db.getTenants()) {
             if (tenant.getEmail().equalsIgnoreCase(email)) {
                 return tenant;
             }
@@ -63,17 +66,17 @@ public class Service {
         builder.getTenant().setMonthlyRent(builder.getUnit().getMonthlyRent());
         builder.getTenant().setRentedUnitId(builder.getUnit().getUnitId());
         builder.getUnit().setIsRented(true);
-        Lease unit = builder.build();
-        leases.add(unit);
+        Lease lease = builder.build();
+        db.addLease(lease);
     }
 
     public ArrayList<Lease> getAllLeases() {
-        return leases;
+        return db.getLeases();
     }
 
     public ArrayList<Unit> getRentedUnits() {
         ArrayList<Unit> rentedUnits = new ArrayList<>();
-        for (Unit unit : properties) {
+        for (Unit unit : db.getProperties()) {
             if (unit.getIsRented()) {
                 rentedUnits.add(unit);
             }
@@ -83,11 +86,24 @@ public class Service {
 
     public ArrayList<Unit> getVacantUnits() {
         ArrayList<Unit> vacantUnits = new ArrayList<>();
-        for (Unit unit : properties) {
+        for (Unit unit : db.getProperties()) {
             if (!unit.getIsRented()) {
                 vacantUnits.add(unit);
             }
         }
         return vacantUnits;
+    }
+
+    public void subscribeToUnit(Unit unit, Tenant tenant) {
+        Lease lease = null;
+        ArrayList<Lease> leases = db.getLeases();
+        for (Lease l :
+                leases) {
+            if (l.getProperty().getUnitId() == unit.getUnitId()) {
+                lease = l;
+            }
+        }
+        lease.addSubscriber(tenant);
+        lease.notifySubscriber();
     }
 }
