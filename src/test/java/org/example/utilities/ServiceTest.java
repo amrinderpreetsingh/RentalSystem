@@ -190,4 +190,13 @@ class ServiceTest {
 
         assertEquals(3, result.size());
     }
+    @Test
+    void getTenantByEmail() {
+        Tenant tenant = new TenantBuilder("Gagan", "8968147777", "gagan@gmail.com").build();
+        ArrayList<Tenant> tenants = new ArrayList<>();
+        tenants.add(tenant);
+        when(db.getTenants()).thenReturn(tenants);
+        Tenant tenant1 = service.getTenantByEmail("gagan@gmail.com");
+        assertEquals(tenant, tenant1);
+    }
 }
