@@ -24,6 +24,7 @@ public class View {
     }
 
     public void menu() {
+        System.out.println("Welcome to Rental Management System");
         while (true) {
             System.out.println("Please select an option: ");
             System.out.print(
