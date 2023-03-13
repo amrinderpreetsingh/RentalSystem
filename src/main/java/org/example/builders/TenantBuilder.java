@@ -40,12 +40,5 @@ public class TenantBuilder {
     public void setEmail(String email) {
         this.email = email;
     }
-    @Override
-    public String toString() {
-        return "TenantBuilder{" +
-                "fullName='" + fullName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
+
 }

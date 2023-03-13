@@ -2,7 +2,7 @@ package org.example.builders;
 
 import org.example.model.Unit;
 
-public abstract class UnitBuilder {
+public abstract class UnitBuilder implements Builder{
     private String streetName;
     private String city;
     private String postalCode;
