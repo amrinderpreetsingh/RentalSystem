@@ -11,14 +11,15 @@ public abstract class UnitBuilder {
 
     private double monthlyRent;
 
-    public UnitBuilder(String streetName, String city, String postalCode, boolean isRented, String streetNumber,double monthlyRent) {
+    public UnitBuilder(String streetName, String city, String postalCode, boolean isRented, String streetNumber, double monthlyRent) {
         this.streetName = streetName;
         this.city = city;
         this.postalCode = postalCode;
         this.isRented = isRented;
         this.streetNumber = streetNumber;
-        this.monthlyRent=monthlyRent;
+        this.monthlyRent = monthlyRent;
     }
+
     public abstract Unit build();
 
     public double getMonthlyRent() {
@@ -53,11 +54,11 @@ public abstract class UnitBuilder {
         this.postalCode = postalCode;
     }
 
-    public boolean isRented() {
+    public boolean getIsRented() {
         return isRented;
     }
 
-    public void setRented(boolean rented) {
+    public void setIsRented(boolean rented) {
         isRented = rented;
     }
 

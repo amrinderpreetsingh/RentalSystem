@@ -17,7 +17,7 @@ public abstract class Unit {
         this.streetName = unitBuilder.getStreetName();
         this.city = unitBuilder.getCity();
         this.postalCode = unitBuilder.getPostalCode();
-        this.isRented = unitBuilder.isRented();
+        this.isRented = unitBuilder.getIsRented();
         this.streetNumber = unitBuilder.getStreetNumber();
         this.monthlyRent = unitBuilder.getMonthlyRent();
         this.unitId = _unitId;
