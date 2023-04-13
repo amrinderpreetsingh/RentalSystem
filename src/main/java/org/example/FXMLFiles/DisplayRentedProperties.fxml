@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="436.0" prefWidth="964.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.DisplayRentedPropertiesHandler">
+   <children>
+      <TableView fx:id="properties" layoutX="30.0" layoutY="78.0" prefHeight="200.0" prefWidth="903.0">
+         <columns>
+            <TableColumn fx:id="unitId" prefWidth="59.483680725097656" text="Unit Id" />
+            <TableColumn fx:id="streetName" prefWidth="140.83300018310547" text="Street Name" />
+            <TableColumn fx:id="streetNumber" prefWidth="106.70564270019531" text="Street Number" />
+            <TableColumn fx:id="city" prefWidth="81.58657836914062" text="City" />
+            <TableColumn fx:id="postalCode" prefWidth="88.22738647460938" text="Postal Code" />
+            <TableColumn fx:id="monthlyRent" prefWidth="93.77264404296875" text="Monthly Rent" />
+            <TableColumn fx:id="numberOfBedrooms" prefWidth="76.256103515625" text="#Bedrooms" />
+            <TableColumn fx:id="numberOfBathrooms" prefWidth="75.44378662109375" text="#Bathrooms" />
+            <TableColumn fx:id="squareFootage" prefWidth="102.0758056640625" text="Square Footage" />
+            <TableColumn fx:id="unitNumber" minWidth="0.0" prefWidth="75.5" text="Unit Number" />
+         </columns>
+      </TableView>
+      <Button layoutX="388.0" layoutY="315.0" mnemonicParsing="false" onAction="#onOKButtonHandler" prefHeight="64.0" prefWidth="172.0" text="Go Back" />
+   </children>
+</AnchorPane>

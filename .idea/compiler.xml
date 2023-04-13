@@ -9,5 +9,8 @@
         <module name="RentalSystem" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="resource" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

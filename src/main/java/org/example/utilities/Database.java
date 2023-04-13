@@ -69,7 +69,7 @@ public class Database {
         properties.add(apartment1);
 
         Tenant tenant1 = new TenantBuilder("Sunny", "998822", "sunny@gmail.com").build();
-        Tenant tenant2 = new TenantBuilder("Gagan", "798822", "gagan@gmail.com").build();
+        Tenant tenant2 = new TenantBuilder("Gagan", "798822", "g").build();
         tenants.add(tenant1);
         tenants.add(tenant2);
         tenant1.setRentedUnitId(apartment1.getUnitId());

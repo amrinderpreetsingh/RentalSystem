@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.MainMenuHandler">
+    <children>
+        <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="71.0" prefHeight="247.0" prefWidth="444.0" text="&#10;Press any of the following choices to continue : &#10;&#10;1. Add a Property&#10;2. Add a Tenant&#10;3. Rent a unit&#10;4. Display Properties&#10;5. Display Tenants&#10;6. Display Rented Units&#10;7. Display Vacant Units&#10;8. Display All Leases&#10;9. Exit&#10;">
+            <font>
+                <Font name="Apple Braille" size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="enterChoice" layoutX="213.0" layoutY="247.0" />
+        <Button layoutX="149.0" layoutY="315.0" mnemonicParsing="false" onAction="#onOKButtonHandler" onKeyPressed="#onOKButtonHandler" prefHeight="43.0" prefWidth="114.0" text="OK" />
+        <Button layoutX="323.0" layoutY="315.0" mnemonicParsing="false" onAction="#onGoBackHandler" prefHeight="43.0" prefWidth="114.0" text="Back" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="405.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.DisplayLeasesHandler">
+   <children>
+      <TableView fx:id="leases" layoutX="69.0" layoutY="69.0" prefHeight="200.0" prefWidth="674.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="unitDetails" prefWidth="162.0" text="Unit Details" />
+            <TableColumn fx:id="tenantDetails" prefWidth="149.0" text="Tenant Details" />
+            <TableColumn fx:id="startDate" prefWidth="89.0" text="Start Date" />
+            <TableColumn fx:id="endDate" prefWidth="87.0" text="End Date" />
+            <TableColumn fx:id="monthlyRent" prefWidth="111.0" text="Monthly Rent" />
+        </columns>
+      </TableView>
+      <Button layoutX="332.0" layoutY="309.0" mnemonicParsing="false" onAction="#onOKButtonHandler" prefHeight="58.0" prefWidth="159.0" text="Go Back" />
+   </children>
+</AnchorPane>
